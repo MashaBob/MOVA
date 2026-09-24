@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MOVA · Aprende idiomas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="logo" href="#inicio"><span>М</span> MOVA</a>
+      <p class="school">ESCUELA · MASHA RUSO</p>
+      <nav id="main-nav">
+        <button class="nav-link active" data-view="home">⌂ Inicio</button>
+        <button class="nav-link" data-view="courses">▦ Mis cursos</button>
+        <button class="nav-link" data-view="games">⌘ Juegos</button>
+        <button class="nav-link" data-view="chat">◌ Chat</button>
+        <button class="nav-link" data-view="teacher">✦ Pedagoga</button>
+        <button class="nav-link" data-view="admin">⚙ Administración</button>
+        <button class="nav-link" data-view="builder">▱ Crear escuela</button>
+      </nav>
+      <div class="profile"><div class="avatar">M</div><div><b>María</b><small>Estudiante · plan US$1</small></div></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><button class="mobile-menu" id="mobile-menu">☰</button><div><p id="crumb">INICIO</p><h1 id="page-title">Hola, María</h1></div><div class="top-actions"><button id="role-switch">Cambiar vista</button><button class="bell">●</button></div></header>
+
+      <section class="view active" id="home-view">
+        <div class="hero-card"><div><p class="eyebrow">MOVA · APRENDE A TU RITMO</p><h2>Tu escuela de ruso,<br><i>en un solo lugar.</i></h2><p>Lecciones, práctica, juegos, voz y acompañamiento de Nika.</p><button class="primary" data-go="courses">Continuar aprendiendo →</button></div><div class="hero-orb">Привет<br><small>hola</small></div></div>
+        <div class="stats"><article><strong id="stat-progress">0%</strong><span>progreso total</span></article><article><strong>8</strong><span>cursos disponibles</span></article><article><strong id="stat-streak">0</strong><span>días de racha</span></article></div>
+        <div class="section-head"><div><p class="eyebrow">TU SIGUIENTE LECCIÓN</p><h2>Ruso desde cero · A0</h2></div><button class="text-button" data-go="courses">Ver todos los cursos</button></div>
+        <article class="continue-card"><div class="lesson-index">01</div><div><h3>Saludos esenciales</h3><p>Привет · Спасибо · До свидания</p><div class="progress"><i id="home-progress"></i></div></div><button class="round" data-go="courses">→</button></article>
+      </section>
+
+      <section class="view" id="courses-view"><div class="section-head"><div><p class="eyebrow">BIBLIOTECA MOVA</p><h2>Todos los cursos incluidos</h2><p>Acceso con la suscripción mensual de US$1.</p></div><button class="membership">US$1 / mes · activo</button></div><div class="course-grid" id="course-grid"></div></section>
+
+      <section class="view" id="games-view"><div class="section-head"><div><p class="eyebrow">JUEGOS MOVA</p><h2>Practica jugando</h2><p>Funciona con ratón, teclado, móvil y mando compatible.</p></div></div><div class="game-layout"><article class="game-card"><p class="eyebrow">LABERINTO · DIRECCIONES</p><h3>Encuentra el café</h3><p>Usa las flechas o los botones. Aprende: прямо, налево, направо.</p><div class="maze" id="maze"><span class="goal">☕</span><span class="player" id="player">●</span></div><div class="controls"><button data-move="up">↑</button><button data-move="left">←</button><button data-move="down">↓</button><button data-move="right">→</button></div><p id="maze-message">Llega al café.</p></article><article class="game-card"><p class="eyebrow">FLASHCARDS</p><h3 id="card-russian">Спасибо</h3><p id="card-spanish">Toca la tarjeta para ver la traducción.</p><button class="flash" id="flash-card">Voltear tarjeta</button><div class="card-actions"><button id="flash-prev">←</button><span id="flash-count">1 / 4</span><button id="flash-next">→</button></div></article></div></section>
+
+      <section class="view" id="chat-view"><div class="chat-layout"><article class="chat-box"><div class="chat-title"><div class="nika-dot">N</div><div><b>Nika · guía MOVA</b><small>En línea · demo</small></div></div><div class="messages" id="messages"><div class="message nika">Hola, soy Nika. Puedo ayudarte con cursos, pronunciación y tu progreso.</div></div><form id="chat-form"><input id="chat-input" placeholder="Escribe a Nika…"><button>Enviar</button></form></article><aside class="chat-help"><p class="eyebrow">PRUEBA A PREGUNTAR</p><button class="prompt">¿Qué curso debo empezar?</button><button class="prompt">Ayúdame con pronunciación</button><button class="prompt">¿Cómo funciona mi progreso?</button><p>Para una conversación realmente libre se conecta el asistente IA seguro en la siguiente etapa.</p></aside></div></section>
+
+      <section class="view" id="teacher-view"><div class="section-head"><div><p class="eyebrow">CABINET PEDAGÓGICO</p><h2>Tu contenido y estudiantes</h2><p>Vista de Masha como profesora.</p></div><button class="primary" id="new-lesson">+ Nueva lección</button></div><div class="dashboard-grid"><article><p class="eyebrow">ESTUDIANTES ACTIVOS</p><strong>24</strong><span>+ 4 esta semana</span></article><article><p class="eyebrow">ENTREGAS DE AUDIO</p><strong>12</strong><span>por revisar</span></article><article><p class="eyebrow">PROGRESO PROMEDIO</p><strong>46%</strong><span>en Ruso desde cero</span></article></div><article class="upload-panel"><h3>Subir material a una lección</h3><p>Video, imagen, GIF o presentación interactiva.</p><input type="file" id="teacher-file" accept="image/*,video/*,.pdf,.ppt,.pptx"><p id="upload-status">Los archivos se almacenarán en la nube al conectar la versión de producción.</p></article></section>
+
+      <section class="view" id="admin-view"><p class="eyebrow">ADMINISTRACIÓN MOVA</p><h2>Escuela Masha Ruso</h2><div class="dashboard-grid"><article><p class="eyebrow">SUSCRIPCIONES</p><strong>24</strong><span>US$24 / mes estimado</span></article><article><p class="eyebrow">PAGOS</p><strong>0</strong><span>Conecta Mercado Pago</span></article><article><p class="eyebrow">DOCENTES</p><strong>1</strong><span>Masha Ruso</span></article></div><article class="notice"><b>Próximo paso de producción:</b> conectar Mercado Pago, base de datos y control de acceso para que solo suscriptores pagados entren.</article></section>
+
+      <section class="view" id="builder-view"><p class="eyebrow">MOVA PARA PROFESORES</p><h2>Construye tu propia escuela</h2><p class="lead">Otros profesores podrán alquilar MOVA, elegir el nombre de su escuela, crear cursos, invitar alumnos y cobrar sus propias suscripciones.</p><div class="builder-steps"><article><b>01</b><h3>Crea tu escuela</h3><p>Nombre, colores y página pública.</p></article><article><b>02</b><h3>Publica cursos</h3><p>Lecciones, videos, ejercicios y juegos.</p></article><article><b>03</b><h3>Invita alumnos</h3><p>Roles, chat, progreso y cobros.</p></article></div><button class="primary">Solicitar acceso para profesores</button></section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
