@@ -12,7 +12,7 @@
 <body>
   <div class="app-shell">
     <aside class="sidebar">
-      <a class="logo" href="#inicio"><span>М</span> MOVA</a>
+      <a class="logo" href="#inicio"><span class="globe">◉</span><b>MOVA</b></a>
       <p class="school">ESCUELA · MASHA RUSO</p>
       <nav id="main-nav">
         <button class="nav-link active" data-view="home">⌂ Inicio</button>
@@ -36,6 +36,12 @@
       </section>
 
       <section class="view" id="courses-view"><div class="section-head"><div><p class="eyebrow">BIBLIOTECA MOVA</p><h2>Todos los cursos incluidos</h2><p>Acceso con la suscripción mensual de US$1.</p></div><button class="membership">US$1 / mes · activo</button></div><div class="course-grid" id="course-grid"></div></section>
+
+      <section class="view" id="lesson-view">
+        <button class="back-course" id="back-courses">← Todos los cursos</button>
+        <div class="lesson-hero"><div><p class="eyebrow" id="lesson-level">MINI CURSO · 30 DÍAS</p><h2 id="lesson-course-title">Ruso desde cero</h2><p id="lesson-course-description">25–30 minutos al día: vocabulario, conversación y práctica.</p></div><div class="lesson-logo"><span class="globe">◉</span> MOVA<small>COMUNICA · APRENDE · CONECTA</small></div></div>
+        <div class="lesson-layout"><aside class="day-list"><h3>Tu programa</h3><div id="day-list"></div></aside><article class="lesson-content" id="lesson-content"></article></div>
+      </section>
 
       <section class="view" id="games-view"><div class="section-head"><div><p class="eyebrow">JUEGOS MOVA</p><h2>Practica jugando</h2><p>Funciona con ratón, teclado, móvil y mando compatible.</p></div></div><div class="game-layout"><article class="game-card"><p class="eyebrow">LABERINTO · DIRECCIONES</p><h3>Encuentra el café</h3><p>Usa las flechas o los botones. Aprende: прямо, налево, направо.</p><div class="maze" id="maze"><span class="goal">☕</span><span class="player" id="player">●</span></div><div class="controls"><button data-move="up">↑</button><button data-move="left">←</button><button data-move="down">↓</button><button data-move="right">→</button></div><p id="maze-message">Llega al café.</p></article><article class="game-card"><p class="eyebrow">FLASHCARDS</p><h3 id="card-russian">Спасибо</h3><p id="card-spanish">Toca la tarjeta para ver la traducción.</p><button class="flash" id="flash-card">Voltear tarjeta</button><div class="card-actions"><button id="flash-prev">←</button><span id="flash-count">1 / 4</span><button id="flash-next">→</button></div></article></div></section>
 
