@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=lesson-layout-2">
 </head>
 <body>
   <div class="app-shell">
@@ -43,7 +43,7 @@
         <div class="lesson-layout"><aside class="day-list"><h3>Tu programa</h3><div id="day-list"></div></aside><article class="lesson-content" id="lesson-content"></article></div>
       </section>
 
-      <section class="view" id="games-view"><div class="section-head"><div><p class="eyebrow">JUEGOS MOVA</p><h2>Practica jugando</h2><p>Funciona con ratón, teclado, móvil y mando compatible.</p></div></div><div class="game-layout"><article class="game-card"><p class="eyebrow">LABERINTO · DIRECCIONES</p><h3>Encuentra el café</h3><p>Usa las flechas o los botones. Aprende: прямо, налево, направо.</p><div class="maze" id="maze"><span class="goal">☕</span><span class="player" id="player">●</span></div><div class="controls"><button data-move="up">↑</button><button data-move="left">←</button><button data-move="down">↓</button><button data-move="right">→</button></div><p id="maze-message">Llega al café.</p></article><article class="game-card"><p class="eyebrow">FLASHCARDS</p><h3 id="card-russian">Спасибо</h3><p id="card-spanish">Toca la tarjeta para ver la traducción.</p><button class="flash" id="flash-card">Voltear tarjeta</button><div class="card-actions"><button id="flash-prev">←</button><span id="flash-count">1 / 4</span><button id="flash-next">→</button></div></article></div></section>
+      <section class="view" id="games-view"><div class="section-head"><div><p class="eyebrow">JUEGOS MOVA</p><h2>Practica jugando</h2><p>Retos con palabras, dirección y memoria. Funciona con ratón, teclado, móvil y mando compatible.</p></div></div><div class="game-layout games-plus"><article class="game-card"><p class="eyebrow">LABERINTO · DIRECCIONES</p><h3>Encuentra el café</h3><p>Usa las flechas o los botones. Aprende: прямо, налево, направо.</p><div class="maze" id="maze"><span class="goal">☕</span><span class="player" id="player">●</span></div><div class="controls"><button data-move="up">↑</button><button data-move="left">←</button><button data-move="down">↓</button><button data-move="right">→</button></div><p id="maze-message">Llega al café.</p></article><article class="game-card"><p class="eyebrow">FLASHCARDS</p><h3 id="card-russian">Спасибо</h3><p id="card-spanish">Toca la tarjeta para ver la traducción.</p><button class="flash" id="flash-card">Voltear tarjeta</button><div class="card-actions"><button id="flash-prev">←</button><span id="flash-count">1 / 4</span><button id="flash-next">→</button></div></article><article class="game-card"><p class="eyebrow">RETO RÁPIDO · 30 SEG</p><h3>Encuentra la traducción</h3><p id="speed-question">¿Qué significa «семья»?</p><div class="speed-answers" id="speed-answers"><button data-speed="wrong">amiga</button><button data-speed="correct">familia</button><button data-speed="wrong">ciudad</button></div><p id="speed-message">Gana una estrella por cada respuesta correcta.</p><button class="flash" id="speed-next">Siguiente reto →</button></article></div></section>
 
       <section class="view" id="chat-view"><div class="chat-layout"><article class="chat-box"><div class="chat-title"><div class="nika-dot">N</div><div><b>Nika · guía MOVA</b><small>En línea · demo</small></div></div><div class="messages" id="messages"><div class="message nika">Hola, soy Nika. Puedo ayudarte con cursos, pronunciación y tu progreso.</div></div><form id="chat-form"><input id="chat-input" placeholder="Escribe a Nika…"><button>Enviar</button></form></article><aside class="chat-help"><p class="eyebrow">PRUEBA A PREGUNTAR</p><button class="prompt">¿Qué curso debo empezar?</button><button class="prompt">Ayúdame con pronunciación</button><button class="prompt">¿Cómo funciona mi progreso?</button><p>Para una conversación realmente libre se conecta el asistente IA seguro en la siguiente etapa.</p></aside></div></section>
 
@@ -63,6 +63,6 @@
       <form id="nika-form"><input id="nika-input" placeholder="Ej.: ¿Qué significa Привет?"><button>Enviar</button></form>
     </div>
   </aside>
-  <script src="app.js?v=daily-lessons-2"></script>
+  <script src="app.js?v=daily-lessons-3"></script>
 </body>
 </html>
