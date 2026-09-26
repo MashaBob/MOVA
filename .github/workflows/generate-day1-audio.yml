@@ -1,0 +1,27 @@
+name: Generate MOVA Day 1 audio
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  create-audio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Create female Russian MP3 files with OpenAI
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node scripts/generate-day1-audio.mjs
+      - name: Save audio files to the repository
+        run: |
+          git config user.name "MOVA Audio Bot"
+          git config user.email "mova-audio-bot@users.noreply.github.com"
+          git add audio
+          git diff --staged --quiet || git commit -m "Add Day 1 female voice audio"
+          git push
