@@ -90,3 +90,5 @@ let movaAudio=null;const movaAudioFiles={'Привет':'privet','Привет!'
 // Static female voice clips added for Day 1 vocabulary.
 Object.assign(movaAudioFiles,{'Меня зовут':'menya-zovut','Меня зовут...':'menya-zovut','Меня зовут Маша.':'menya-zovut-masha','А ты?':'a-ty','Я стudent.':'ya-student','Я учитель.':'ya-uchitel','из России':'ya-iz-rossii','из Испании':'ya-iz-ispanii','Пока!':'poka','пока!':'poka','Добро пожаловать!':'dobro-pozhalovat','добро пожаловать':'dobro-pozhalovat','Как вас зовут?':'kak-vas-zovut','как вас зовут?':'kak-vas-zovut'});
 Object.assign(movaAudioFiles,{'Я студент.':'ya-student'});
+
+Object.assign(movaPacks,{1:[['Здравствуйте!','hola formal'],['Очень приятно','mucho gusto'],['А ты?','¿y tú?'],['Я студент.','soy estudiante'],['Я учитель.','soy profesora'],['Я из России.','soy de Rusia'],['Я из Испании.','soy de España'],['Пока!','¡adiós!'],['Добро пожаловать!','bienvenido'],['Как вас зовут?','¿cómo se llama?'],['Меня зовут...','me llamo...']]});
