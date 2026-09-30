@@ -204,3 +204,86 @@ document.querySelectorAll('.nav-link').forEach(b=>b.onclick=()=>show(b.dataset.v
 
   updateContinueCard();
 })();
+
+
+/* ================================================================
+   MI DICCIONARIO
+   Palabras guardadas desde Día 1 y Día 2.
+   ================================================================ */
+(() => {
+  const dictionaryKey = 'mova-my-dictionary';
+  const renderBeforeDictionary = renderLesson;
+
+  function readDictionary() {
+    try { return JSON.parse(localStorage.getItem(dictionaryKey) || '[]'); }
+    catch (error) { return []; }
+  }
+
+  function saveWord(russian, spanish, button) {
+    const words = readDictionary();
+    if (!words.some(word => word.russian === russian)) {
+      words.push({ russian, spanish });
+      localStorage.setItem(dictionaryKey, JSON.stringify(words));
+    }
+    button.textContent = '✓ Guardado';
+    button.disabled = true;
+  }
+
+  function renderDictionary() {
+    const view = document.getElementById('dictionary-view');
+    const words = readDictionary();
+    view.innerHTML = '<div class="section-head"><div><p class="eyebrow">MI VOCABULARIO</p><h2>Mi diccionario</h2><p>Palabras que guardaste en tus lecciones.</p></div><strong class="dictionary-count">' + words.length + ' palabras</strong></div>' +
+      (words.length ? '<div class="dictionary-grid">' + words.map((word, index) => '<article class="dictionary-word"><button class="listen dictionary-listen" data-say="' + word.russian + '">🔊</button><b>' + word.russian + '</b><span>' + word.spanish + '</span><button class="remove-word" data-remove="' + index + '">Eliminar</button></article>').join('') + '</div>' : '<article class="empty-dictionary"><h3>Aún no guardaste palabras</h3><p>En Día 1 y Día 2 toca <b>＋ Guardar</b> debajo de cualquier tarjeta.</p></article>');
+
+    view.querySelectorAll('.dictionary-listen').forEach(button => button.onclick = () => speak(button.dataset.say));
+    view.querySelectorAll('.remove-word').forEach(button => {
+      button.onclick = () => {
+        const wordsNow = readDictionary();
+        wordsNow.splice(Number(button.dataset.remove), 1);
+        localStorage.setItem(dictionaryKey, JSON.stringify(wordsNow));
+        renderDictionary();
+      };
+    });
+  }
+
+  // Создаём отдельный пункт меню и страницу словаря.
+  const nav = document.getElementById('main-nav');
+  if (!document.getElementById('dictionary-link')) {
+    const link = document.createElement('button');
+    link.id = 'dictionary-link';
+    link.className = 'nav-link';
+    link.innerHTML = '▤ Mi diccionario';
+    nav.insertBefore(link, nav.querySelector('[data-view="games"]'));
+    link.onclick = () => { renderDictionary(); show('dictionary'); };
+  }
+
+  if (!document.getElementById('dictionary-view')) {
+    const view = document.createElement('section');
+    view.id = 'dictionary-view';
+    view.className = 'view';
+    document.querySelector('.main').appendChild(view);
+  }
+
+  document.head.insertAdjacentHTML('beforeend', '<style id="dictionary-style">.dictionary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}.dictionary-word,.empty-dictionary{padding:18px;border:1px solid #beeaf0;border-radius:18px;background:#fff;box-shadow:0 10px 26px rgba(5,52,93,.08)}.dictionary-word b,.dictionary-word span{display:block}.dictionary-word b{font-size:21px;color:#08345c;margin:8px 0}.dictionary-word span{color:#5d7280}.dictionary-listen{float:right}.remove-word{margin-top:13px;font-size:12px}.dictionary-count{color:#087eaa}.empty-dictionary{max-width:520px}</style>');
+
+  // Добавляет кнопку Guardar к карточкам Дня 1 и Дня 2.
+  renderLesson = function () {
+    renderBeforeDictionary();
+    if (activeDay !== 1 && activeDay !== 2) return;
+
+    document.querySelectorAll('.word-card').forEach(card => {
+      const russian = card.querySelector('b')?.textContent || '';
+      const spanish = card.querySelector('span')?.textContent || '';
+      let button = card.querySelector('.add-word');
+      if (!button) {
+        button = document.createElement('button');
+        button.className = 'add-word';
+        button.textContent = '＋ Guardar';
+        card.appendChild(button);
+      }
+      const alreadySaved = readDictionary().some(word => word.russian === russian);
+      if (alreadySaved) { button.textContent = '✓ Guardado'; button.disabled = true; }
+      button.onclick = () => saveWord(russian, spanish, button);
+    });
+  };
+})();
