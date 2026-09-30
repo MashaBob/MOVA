@@ -152,3 +152,55 @@ document.querySelectorAll('.nav-link').forEach(b=>b.onclick=()=>show(b.dataset.v
     };
   };
 })();
+
+
+/* ================================================================
+   NAVEGACIÓN POR PROGRESO
+   «Continuar aprendiendo» abre el siguiente día pendiente.
+   ================================================================ */
+(() => {
+  function getNextDay() {
+    const totalDays = 30;
+    const done = Math.round((Number(saved.progress) || 0) / 100 * totalDays);
+    return Math.min(totalDays, Math.max(1, done + 1));
+  }
+
+  function updateContinueCard() {
+    const nextDay = getNextDay();
+    const title = topics[nextDay - 1] || 'Práctica guiada';
+    const index = document.querySelector('.continue-card .lesson-index');
+    const heading = document.querySelector('.continue-card h3');
+    const description = document.querySelector('.continue-card p');
+    if (index) index.textContent = String(nextDay).padStart(2, '0');
+    if (heading) heading.textContent = 'Día ' + nextDay + ' · ' + title;
+    if (description) description.textContent = nextDay === 2 ? 'Как дела? · Хорошо · Спасибо · А у тебя?' : 'Tu siguiente práctica de ruso.';
+  }
+
+  function continueLearning() {
+    activeCourse = 0;
+    activeDay = getNextDay();
+    renderLesson();
+    show('lesson');
+  }
+
+  // Кнопка в большом баннере и круглая стрелка на карточке.
+  document.querySelectorAll('[data-go="courses"]').forEach(button => {
+    if (button.classList.contains('primary') || button.classList.contains('round')) {
+      button.onclick = continueLearning;
+    }
+  });
+
+  // Карточка следующего урока — тоже открывает нужный день.
+  document.querySelector('.continue-card')?.addEventListener('click', event => {
+    if (event.target.closest('button') || event.target.closest('.continue-card')) continueLearning();
+  });
+
+  // После завершения дня обновляем карточку на главной странице.
+  const saveBeforeProgress = save;
+  save = function () {
+    saveBeforeProgress();
+    updateContinueCard();
+  };
+
+  updateContinueCard();
+})();
