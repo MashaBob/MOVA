@@ -287,3 +287,86 @@ document.querySelectorAll('.nav-link').forEach(b=>b.onclick=()=>show(b.dataset.v
     });
   };
 })();
+
+
+/* ================================================================
+   DÍA 3 · АЛФАВИТ I
+   10 letras visualmente parecidas al español.
+   ================================================================ */
+(() => {
+  const renderBeforeDay3 = renderLesson;
+  topics[2] = 'Алфавит I · буквы, похожие на español';
+  topics[3] = 'Алфавит II · новые буквы';
+  topics[4] = 'Числа 1–10';
+  topics[5] = 'Числа 10–99';
+  topics[6] = 'Большие числа · 100–1000';
+  topics[7] = 'Ты и твоя страна';
+
+  const letters = [
+    ['А а', 'A · como en español'], ['В в', 'V · no es B'],
+    ['Е е', 'YE / E · no es E siempre'], ['К к', 'K · como K'],
+    ['М м', 'M · como M'], ['Н н', 'N · parece H'],
+    ['О о', 'O · como O'], ['Р р', 'R · parece P'],
+    ['С с', 'S · parece C'], ['Т т', 'T · como T']
+  ];
+  const quiz = [
+    ['¿Qué letra rusa suena como V?', ['В', 'Б', 'Р'], 0],
+    ['¿Qué letra parece H pero suena N?', ['Н', 'И', 'П'], 0],
+    ['¿Qué letra parece P pero suena R?', ['Р', 'П', 'Г'], 0],
+    ['¿Qué letra parece C pero suena S?', ['С', 'О', 'В'], 0],
+    ['Elige la letra A.', ['А', 'Д', 'Я'], 0],
+    ['¿Qué letra suena como M?', ['М', 'Н', 'И'], 0],
+    ['¿Qué letra suena como T?', ['Т', 'Г', 'Р'], 0],
+    ['Elige la letra O.', ['О', 'С', 'Ф'], 0],
+    ['¿Cómo se lee В?', ['V', 'B', 'P'], 0],
+    ['¿Cómo se lee Н?', ['N', 'H', 'M'], 0],
+    ['¿Cómo se lee Р?', ['R', 'P', 'B'], 0],
+    ['¿Cómo se lee С?', ['S', 'C', 'K'], 0],
+    ['Completa: М + А =', ['МА', 'НА', 'РА'], 0],
+    ['Completa: С + О =', ['СО', 'РО', 'ВО'], 0],
+    ['Elige la palabra con letra Р.', ['РА', 'НА', 'МО'], 0],
+    ['¿Cuál es la letra K?', ['К', 'Х', 'Ж'], 0],
+    ['Mira la letra y di su sonido: В', ['V', 'R', 'N'], 0]
+  ];
+
+  document.head.insertAdjacentHTML('beforeend', '<style id="day-three-style">.alphabet-note{border-left:4px solid #16c7ca;background:#effcfc}.letter-card b{font-size:32px;line-height:1;color:#073a67}.letter-card span{font-size:13px}.alpha-game{background:linear-gradient(135deg,#073766,#0b8cab);color:white}.alpha-tiles{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.alpha-tiles button{min-width:55px;font-size:22px}.alpha-tiles button.good{background:#78f6dd;color:#073766}.alpha-tiles button.bad{background:#f2a2b0}.quiz-card{margin:12px 0}.quiz-card.done{border-color:#14b9c9;background:#f2feff}</style>');
+
+  renderLesson = function () {
+    if (activeDay !== 3) { renderBeforeDay3(); return; }
+    const days = 30;
+    document.getElementById('lesson-level').textContent = 'A0 · MINI CURSO · 30 DÍAS';
+    document.getElementById('lesson-course-title').textContent = 'Ruso desde cero';
+    document.getElementById('lesson-course-description').textContent = 'Día 3: lee 10 letras rusas que reconocerás inmediatamente.';
+    document.getElementById('day-list').innerHTML = Array.from({length:days}, (_,index) => '<button class="day-item '+(index+1===activeDay?'active':'')+'" data-day="'+(index+1)+'"><b>'+(index+1)+'</b><span>Día '+(index+1)+'<small>'+(topics[index]||'Práctica guiada')+'</small></span></button>').join('');
+    document.querySelectorAll('[data-day]').forEach(button => button.onclick = () => { activeDay = Number(button.dataset.day); renderLesson(); });
+
+    const vocabulary = letters.map(letter => '<article class="word-card letter-card"><b>'+letter[0]+'</b><span>'+letter[1]+'</span><button class="add-word" data-russian="'+letter[0]+'" data-spanish="'+letter[1]+'">＋ Guardar</button></article>').join('');
+    const tasks = quiz.map((item,index) => '<section class="lesson-block quiz-card" data-task="'+index+'"><p class="eyebrow">EJERCICIO '+(index+1)+' DE 17</p><h4>'+item[0]+'</h4><div class="answer-row">'+item[1].map((answer,i) => '<button data-day3-answer="'+index+'" data-right="'+(i===item[2])+'">'+answer+'</button>').join('')+'</div><p id="day3-feedback-'+index+'"></p></section>').join('');
+
+    document.getElementById('lesson-content').innerHTML =
+      '<p class="eyebrow">DÍA 3 · 25–30 MINUTOS</p><h3>Алфавит I · letras que ya conoces</h3><p class="lesson-time">Hoy: mira · compara · lee · juega</p>'+ 
+      '<section class="lesson-block alphabet-note"><p class="eyebrow">💡 CONEXIÓN CON ESPAÑOL</p><p>Estas letras se ven familiares, pero algunas cambian de sonido. La más importante de hoy: <b>В = V</b>, <b>Н = N</b>, <b>Р = R</b> y <b>С = S</b>.</p></section>'+ 
+      '<section class="lesson-block"><p class="eyebrow">10 LETRAS PARA LEER</p><div class="vocab-grid">'+vocabulary+'</div></section>'+ 
+      '<section class="lesson-block"><p class="eyebrow">LEE SÍLABAS</p><p><b>МА · НА · РА · СО · ТО · ВА</b></p><p>Primero mira la letra, luego di el sonido. No memorices: compara la forma con el español.</p></section>'+ 
+      '<section class="lesson-block"><p class="eyebrow">RUTA DE PRÁCTICA · 17 EJERCICIOS</p><div class="exercise-progress"><i id="day3-progress" style="width:0%"></i></div><p id="day3-status">0 de 17 completados</p></section>'+tasks+
+      '<section class="lesson-block alpha-game"><p class="eyebrow">🎮 JUEGO · CAZA LA LETRA</p><h4 id="alpha-question">Encuentra la letra que suena como V.</h4><div class="alpha-tiles" id="alpha-tiles"><button data-letter="Н">Н</button><button data-letter="В">В</button><button data-letter="Р">Р</button><button data-letter="С">С</button></div><p id="alpha-message">Elige una letra. Si aciertas, pasa a la siguiente ronda.</p></section>'+ 
+      '<section class="lesson-block"><p class="eyebrow">⭐ MISIÓN DEL DÍA</p><p>Reconoce y lee sin mirar: <b>А, В, Е, К, М, Н, О, Р, С, Т</b>.</p><button id="day3-complete" class="complete-day">Completar día 3 ✓</button></section>';
+
+    document.querySelectorAll('.add-word').forEach(button => button.onclick = () => {
+      const key = 'mova-my-dictionary'; let words=[]; try { words=JSON.parse(localStorage.getItem(key)||'[]'); } catch(error) {}
+      if (!words.some(word => word.russian===button.dataset.russian)) words.push({russian:button.dataset.russian,spanish:button.dataset.spanish});
+      localStorage.setItem(key,JSON.stringify(words)); button.textContent='✓ Guardado'; button.disabled=true;
+    });
+    const completed = new Set();
+    document.querySelectorAll('[data-day3-answer]').forEach(button => button.onclick = () => {
+      const number = button.dataset.day3Answer, feedback=document.getElementById('day3-feedback-'+number);
+      if (button.dataset.right==='true') { completed.add(number); feedback.textContent='✓ ¡Correcto!'; button.closest('.quiz-card').classList.add('done'); }
+      else feedback.textContent='Mira otra vez la forma y el sonido.';
+      document.getElementById('day3-status').textContent=completed.size+' de 17 completados';
+      document.getElementById('day3-progress').style.width=Math.round(completed.size/17*100)+'%';
+    });
+    let round=0; const game=[['Encuentra la letra que suena como V.','В'],['Encuentra la letra que parece H pero suena N.','Н'],['Encuentra la letra que parece P pero suena R.','Р'],['Encuentra la letra que suena S.','С']];
+    document.querySelectorAll('[data-letter]').forEach(button => button.onclick = () => { const message=document.getElementById('alpha-message'); if(button.dataset.letter!==game[round][1]) { button.classList.add('bad'); message.textContent='No todavía. Mira la conexión con español.'; return; } button.classList.add('good'); round++; if(round===game.length){ document.getElementById('alpha-question').textContent='🎉 ¡Ganaste! Ya puedes leer estas letras.'; message.textContent='Excelente: completaste las cuatro rondas.'; return; } document.getElementById('alpha-question').textContent=game[round][0]; message.textContent='✓ Correcto. Siguiente letra.'; });
+    document.getElementById('day3-complete').onclick=()=>{saved.progress=Math.max(saved.progress,10); saved.streak=(saved.streak||0)+1; save(); document.getElementById('day3-complete').textContent='Día 3 completado ✓';};
+  };
+})();
