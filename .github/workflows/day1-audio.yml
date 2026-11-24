@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/day1-audio.yml'
+      - 'scripts/generate_day1_audio.py'
 permissions:
   contents: write
 jobs:
