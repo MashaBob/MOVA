@@ -1,0 +1,25 @@
+name: Generate Day 1 Russian audio
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/day1-audio.yml'
+permissions:
+  contents: write
+jobs:
+  audio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install edge-tts
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: python scripts/generate_day1_audio.py
+      - run: |
+          git config user.name 'MOVA audio'
+          git config user.email 'actions@users.noreply.github.com'
+          git add audio
+          git diff --cached --quiet || git commit -m 'Add complete Russian Day 1 audio'
+          git push
